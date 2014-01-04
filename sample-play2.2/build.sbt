@@ -1,4 +1,4 @@
-name := "myFirstApp"
+name := "sample-play2.2"
 
 version := "1.0-SNAPSHOT"
 
