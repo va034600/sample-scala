@@ -1,4 +1,4 @@
-name := "sample-play2.2"
+name := "sample-play-hello-world"
 
 version := "1.0-SNAPSHOT"
 
