@@ -1,0 +1,14 @@
+@(form: Form[(String, String)])
+
+@main("Welcome to Play") {
+
+	@helper.form(action = routes.Application.authenticate) {
+		<fieldset>
+			<legend>input user info.</legend>
+			@helper.inputText(form("email"))
+			@helper.inputText(form("password"))
+		</fieldset>
+		<input type="submit" value="login">
+	}
+
+}
