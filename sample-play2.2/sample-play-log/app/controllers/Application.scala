@@ -2,6 +2,8 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import play.api.data._
+import play.api.data.Forms._
 
 /**
  * 参考
@@ -12,7 +14,7 @@ import play.api.mvc._
  */
 object Application extends Controller {
   def index = LoggingAction { request =>
-    Ok(views.html.index("Your new application is ready."))
+    Ok(views.html.index(loginForm))
   }
 
   def LoggingAction(f: Request[AnyContent] => Result): Action[AnyContent] = {
@@ -21,4 +23,13 @@ object Application extends Controller {
       f(request)
     }
   }
+
+  def submit = Action { implicit request =>
+    Ok(views.html.index(loginForm))
+  }
+
+ val loginForm = Form(
+    tuple(
+      "email" -> text,
+      "password" -> text))
 }

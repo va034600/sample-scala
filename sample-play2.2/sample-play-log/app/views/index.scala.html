@@ -1,7 +1,23 @@
-@(message: String)
+@(form: Form[(String, String)])
 
 @main("Welcome to Play") {
 
-    @message
+	@helper.form(action = routes.Application.index) {
+		<fieldset>
+			<legend>get</legend>
+			@helper.inputText(form("email"))
+			@helper.inputText(form("password"))
+		</fieldset>
+		<input type="submit" value="login">
+	}
+
+	@helper.form(action = routes.Application.submit) {
+		<fieldset>
+			<legend>post</legend>
+			@helper.inputText(form("email"))
+			@helper.inputText(form("password"))
+		</fieldset>
+		<input type="submit" value="login">
+	}
 
 }

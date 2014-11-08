@@ -16,6 +16,7 @@ object Global extends GlobalSettings {
 
   override def onRouteRequest(request: RequestHeader): Option[Handler] = {
     println("executed before every request:" + request.toString)
+    println(request.queryString)
     super.onRouteRequest(request)
   }
 }
