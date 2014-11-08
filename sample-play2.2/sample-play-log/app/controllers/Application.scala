@@ -12,18 +12,9 @@ import play.api.data.Forms._
  * アクション合成
  * http://www.playframework-ja.org/documentation/2.0.8/ScalaActionsComposition
  */
-object Application extends Controller {
+object Application extends BaseApplication {
   def index = LoggingAction { request =>
     Ok(views.html.index(loginForm))
-  }
-
-  def LoggingAction(f: Request[AnyContent] => Result): Action[AnyContent] = {
-    Action { implicit request =>
-      var a = request.body
-      var d = a.asFormUrlEncoded
-      println(d)
-      f(request)
-    }
   }
 
   def submit = LoggingAction { implicit request =>
