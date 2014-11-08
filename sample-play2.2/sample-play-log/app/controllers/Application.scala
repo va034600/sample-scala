@@ -18,13 +18,15 @@ object Application extends Controller {
   }
 
   def LoggingAction(f: Request[AnyContent] => Result): Action[AnyContent] = {
-    Action { request =>
-      Logger.info("Calling action")
+    Action { implicit request =>
+      var a = request.body
+      var d = a.asFormUrlEncoded
+      println(d)
       f(request)
     }
   }
 
-  def submit = Action { implicit request =>
+  def submit = LoggingAction { implicit request =>
     Ok(views.html.index(loginForm))
   }
 
