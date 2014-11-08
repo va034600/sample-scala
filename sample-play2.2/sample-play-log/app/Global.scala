@@ -5,7 +5,7 @@ import play.api.mvc._
  * 参考
  * http://www.playframework-ja.org/documentation/2.0.8/ScalaInterceptors
  */
-object Global extends GlobalSettings {
+object Global extends WithFilters(LoggingFilter) {
   override def onStart(app: Application) {
     Logger.info("start")
   }
