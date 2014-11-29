@@ -5,7 +5,6 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import auth.HtmlSecured
-import auth.JsonSecured
 
 import play.api.libs.json.JsBoolean
 import play.api.libs.json.JsNumber
@@ -20,7 +19,7 @@ import play.api.mvc.Controller
  * Authorization
  * http://www.playframework.com/documentation/2.0.1/ScalaSecurity
  */
-class JsonBaseController extends Controller with JsonSecured {
+class JsonBaseController extends Controller with HtmlSecured {
   def sessionErrorJson = Action { implicit request =>
     val map = Map("status" -> "session_error")
     val json = Json.toJson(map)
