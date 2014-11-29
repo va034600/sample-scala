@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index
+GET     /index2                           controllers.Application2.index2
 GET     /login                           controllers.Application.login
 GET     /authenticate                           controllers.Application.authenticate
 GET     /logout                           controllers.Application.logout

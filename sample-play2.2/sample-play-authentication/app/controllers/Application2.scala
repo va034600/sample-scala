@@ -10,9 +10,9 @@ import play.api.data.Forms._
  * Authorization
  * http://www.playframework.com/documentation/2.0.1/ScalaSecurity
  */
-object Application extends BaseController {
-  def index = withAuth { username =>
+object Application2 extends BaseController {
+  def index2 = withAuth { username =>
     implicit request =>
-      Ok(views.html.index(username))
+      Ok(views.html.index2(username))
   }
 }
