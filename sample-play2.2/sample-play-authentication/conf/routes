@@ -8,7 +8,9 @@ GET     /index2                           controllers.Application2.index2
 GET     /login                           controllers.Application.login
 GET     /authenticate                           controllers.Application.authenticate
 GET     /logout                           controllers.Application.logout
+
 GET     /json1       controllers.JsonController.json1()
+GET     /sessionErrorJson       controllers.JsonController.sessionErrorJson()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
