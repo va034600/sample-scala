@@ -5,14 +5,13 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.libs.json._
-import auth.HtmlSecured
 
 /**
  * 参考
  * Authorization
  * http://www.playframework.com/documentation/2.0.1/ScalaSecurity
  */
-class BaseController extends Controller with HtmlSecured {
+object BaseController extends Controller {
   val loginForm = Form(
     tuple(
       "email" -> text,
@@ -31,11 +30,11 @@ class BaseController extends Controller with HtmlSecured {
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.login(formWithErrors)),
-      user => Redirect(routes.Application.index).withSession(Security.username -> user._1))
+      user => Redirect(controllers.routes.Application.index).withSession(Security.username -> user._1))
   }
 
   def logout = Action {
-    Redirect(routes.Application.login).withNewSession.flashing(
+    Redirect(controllers.routes.BaseController.login).withNewSession.flashing(
       "success" -> "You are now logged out.")
   }
 

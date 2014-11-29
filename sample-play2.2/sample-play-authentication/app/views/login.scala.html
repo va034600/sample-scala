@@ -2,7 +2,7 @@
 
 @main("Welcome to Play") {
 
-	@helper.form(action = routes.Application.authenticate) {
+	@helper.form(action = routes.BaseController.authenticate) {
 		<fieldset>
 			<legend>input user info.</legend>
 			@helper.inputText(form("email"))
@@ -13,3 +13,4 @@
 
 }
 <a href="index2">index2</a>
+<a href="@routes.JsonController.json1">json1</a>
