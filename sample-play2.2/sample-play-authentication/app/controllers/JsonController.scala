@@ -10,7 +10,7 @@ import play.api.libs.json.Json
 import play.api.mvc.Action
 import play.api.mvc.Controller
 
-object JsonController extends JsonBaseController {
+object JsonController extends BaseController {
   def json1 = withAuth { username =>
     implicit request =>
     val map = Map("aaa" -> "bbb")	

@@ -4,6 +4,7 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
+import play.api.libs.json._
 import auth.HtmlSecured
 
 /**
@@ -36,6 +37,13 @@ class BaseController extends Controller with HtmlSecured {
   def logout = Action {
     Redirect(routes.Application.login).withNewSession.flashing(
       "success" -> "You are now logged out.")
+  }
+
+  def sessionErrorJson = Action { implicit request =>
+    val map = Map("status" -> "session_error")
+    val json = Json.toJson(map)
+
+    Ok(json)
   }
 
 }
