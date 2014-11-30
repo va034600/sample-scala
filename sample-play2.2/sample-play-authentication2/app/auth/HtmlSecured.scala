@@ -17,7 +17,7 @@ trait HtmlSecured {
     }
 
     if(AuthModel.isSessionId(sessionId.get.value)  ){
-      Some(sessionId.toString())
+      Some(sessionId.get.value)
     }else{
       None
     }

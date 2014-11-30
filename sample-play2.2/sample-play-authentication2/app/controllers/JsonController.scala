@@ -13,7 +13,7 @@ import auth.HtmlSecured
 object JsonController extends Controller with HtmlSecured {
   def json1 = withAuth { username =>
     implicit request =>
-    val map = Map("aaa" -> "bbb")	
+    val map = Map("aaa" -> ("bbb-" + username))	
     val json = Json.toJson(map)
     Ok(json)
   }
