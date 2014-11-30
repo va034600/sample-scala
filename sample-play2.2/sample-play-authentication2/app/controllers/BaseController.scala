@@ -49,7 +49,7 @@ object BaseController extends Controller {
     if(sessionId.isDefined){
       AuthModel.removeSession(sessionId.get.value)
     }
-    Redirect(controllers.routes.BaseController.login)
+    Redirect(controllers.routes.BaseController.login).discardingCookies(DiscardingCookie("sessionId"))
   }
 
   def sessionErrorJson = Action { implicit request =>
