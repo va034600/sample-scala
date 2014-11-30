@@ -52,11 +52,44 @@ object BaseController extends Controller {
     Redirect(controllers.routes.BaseController.login).discardingCookies(DiscardingCookie("sessionId"))
   }
 
+  def authenticateJson = Action { implicit request =>
+    loginForm.bindFromRequest.fold(
+      formWithErrors => {
+        val map = Map("status" -> "failed")
+        val json = Json.toJson(map)
+        Ok(json)
+      },
+      user => {
+        //sessionid作成
+        val sessionId = java.util.UUID.randomUUID().toString()
+
+        //sessionId保存
+        AuthModel.saveSessionId(sessionId)
+
+        val map = Map("status" -> "ok")
+        val json = Json.toJson(map)
+        Ok(json).withCookies(
+        Cookie("sessionId", sessionId, Some(3600 * 24 * 7)))
+      }
+    )
+  }
+
   def sessionErrorJson = Action { implicit request =>
     val map = Map("status" -> "session_error")
     val json = Json.toJson(map)
 
     Ok(json)
+  }
+
+  def logoutJson = Action {implicit request =>
+    val sessionId = request.cookies.get("sessionId")
+    if(sessionId.isDefined){
+      AuthModel.removeSession(sessionId.get.value)
+    }
+        val map = Map("status" -> "ok")
+    val json = Json.toJson(map)
+
+    Ok(json).discardingCookies(DiscardingCookie("sessionId"))
   }
 
 }

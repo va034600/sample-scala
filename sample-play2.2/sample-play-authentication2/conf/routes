@@ -4,13 +4,16 @@
 
 # Home page
 GET     /                           controllers.Application.index
+GET     /api/json1       controllers.JsonController.json1()
 
 GET     /login                           controllers.BaseController.login
 GET     /authenticate                           controllers.BaseController.authenticate
 GET     /logout                           controllers.BaseController.logout
-GET     /api/sessionErrorJson       controllers.BaseController.sessionErrorJson
 
-GET     /api/json1       controllers.JsonController.json1()
+GET     /api/authenticateJson       controllers.BaseController.authenticateJson
+GET     /api/sessionErrorJson       controllers.BaseController.sessionErrorJson
+GET     /api/logoutJson                           controllers.BaseController.logoutJson
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
