@@ -4,10 +4,27 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import controllers.routes
+import play.api.cache._
+import play.api.Play.current;
 
 trait HtmlSecured {
 
-  def username(request: RequestHeader) = request.session.get(Security.username)
+  def username(request: RequestHeader):Option[String] = {
+    val sessionId = request.session.get("sessionId")
+    println("sessionId:" + sessionId)
+
+    if(sessionId.isEmpty){
+      return None
+    }
+
+    if(Cache.get("sessionId").get == sessionId.get){
+      println("ok:" + Cache.get("sessionId"))
+      sessionId
+    }else{
+      println("ng:" + Cache.get("sessionId"))
+      None
+    }
+  }
 
   def onUnauthorized(request: RequestHeader) = {
     var next:Call = null

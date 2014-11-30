@@ -5,6 +5,8 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.libs.json._
+import play.api.cache._
+import play.api.Play.current;
 
 /**
  * 参考
@@ -30,7 +32,17 @@ object BaseController extends Controller {
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.login(formWithErrors)),
-      user => Redirect(controllers.routes.Application.index).withSession(Security.username -> user._1))
+      user => {
+        //sessionid作成
+        val sessionId = java.util.UUID.randomUUID().toString()
+
+        //sessionId保存
+        Cache.set("sessionId", sessionId)
+
+        Redirect(controllers.routes.Application.index).withSession("sessionId" -> sessionId)
+        //Redirect(controllers.routes.Application.index).withSession(Security.username -> user._1)
+      }
+    )
   }
 
   def logout = Action {
