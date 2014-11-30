@@ -10,16 +10,20 @@ import play.api.Play.current;
 trait HtmlSecured {
 
   def username(request: RequestHeader):Option[String] = {
-    val sessionId = request.session.get("sessionId")
+    val sessionId = request.cookies.get("sessionId")
     println("sessionId:" + sessionId)
 
     if(sessionId.isEmpty){
       return None
     }
 
-    if(Cache.get("sessionId").get == sessionId.get){
+    if(Cache.get("sessionId").isEmpty){
+      return None
+    }
+
+    if(Cache.get("sessionId").get == sessionId.get.value ){
       println("ok:" + Cache.get("sessionId"))
-      sessionId
+      Some(sessionId.toString())
     }else{
       println("ng:" + Cache.get("sessionId"))
       None

@@ -39,8 +39,8 @@ object BaseController extends Controller {
         //sessionId保存
         Cache.set("sessionId", sessionId)
 
-        Redirect(controllers.routes.Application.index).withSession("sessionId" -> sessionId)
-        //Redirect(controllers.routes.Application.index).withSession(Security.username -> user._1)
+        Redirect(controllers.routes.Application.index).withCookies(
+        Cookie("sessionId", sessionId, Some(3600 * 24 * 7)))
       }
     )
   }
