@@ -1,4 +1,4 @@
-name := "sample-play-authentication"
+name := "sample-play-authentication1"
 
 version := "1.0-SNAPSHOT"
 
