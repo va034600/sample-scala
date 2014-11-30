@@ -10,9 +10,9 @@ GET     /login                           controllers.BaseController.login
 GET     /authenticate                           controllers.BaseController.authenticate
 GET     /logout                           controllers.BaseController.logout
 
-GET     /api/authenticateJson       controllers.BaseController.authenticateJson
-GET     /api/sessionErrorJson       controllers.BaseController.sessionErrorJson
-GET     /api/logoutJson                           controllers.BaseController.logoutJson
+GET     /api/authenticate       controllers.BaseController.authenticateJson
+GET     /api/sessionError       controllers.BaseController.sessionErrorJson
+GET     /api/logout                           controllers.BaseController.logoutJson
 
 
 # Map static resources from the /public folder to the /assets URL path
