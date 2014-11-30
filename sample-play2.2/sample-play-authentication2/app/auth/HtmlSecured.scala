@@ -4,8 +4,7 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import controllers.routes
-import play.api.cache._
-import play.api.Play.current;
+import models.AuthModel
 
 trait HtmlSecured {
 
@@ -17,15 +16,9 @@ trait HtmlSecured {
       return None
     }
 
-    if(Cache.get("sessionId").isEmpty){
-      return None
-    }
-
-    if(Cache.get("sessionId").get == sessionId.get.value ){
-      println("ok:" + Cache.get("sessionId"))
+    if(AuthModel.isSessionId(sessionId.get.value)  ){
       Some(sessionId.toString())
     }else{
-      println("ng:" + Cache.get("sessionId"))
       None
     }
   }

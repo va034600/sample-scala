@@ -5,8 +5,7 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.libs.json._
-import play.api.cache._
-import play.api.Play.current;
+import models.AuthModel
 
 /**
  * 参考
@@ -37,7 +36,7 @@ object BaseController extends Controller {
         val sessionId = java.util.UUID.randomUUID().toString()
 
         //sessionId保存
-        Cache.set("sessionId", sessionId)
+        AuthModel.saveSessionId(sessionId)
 
         Redirect(controllers.routes.Application.index).withCookies(
         Cookie("sessionId", sessionId, Some(3600 * 24 * 7)))
@@ -45,9 +44,12 @@ object BaseController extends Controller {
     )
   }
 
-  def logout = Action {
-    Redirect(controllers.routes.BaseController.login).withNewSession.flashing(
-      "success" -> "You are now logged out.")
+  def logout = Action {implicit request =>
+    val sessionId = request.cookies.get("sessionId")
+    if(sessionId.isDefined){
+      AuthModel.removeSession(sessionId.get.value)
+    }
+    Redirect(controllers.routes.BaseController.login)
   }
 
   def sessionErrorJson = Action { implicit request =>
