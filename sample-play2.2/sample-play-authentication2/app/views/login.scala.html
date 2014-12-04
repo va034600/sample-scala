@@ -2,7 +2,7 @@
 
 @main("Welcome to Play") {
 
-	@helper.form(action = routes.BaseController.authenticate) {
+	@helper.form(action = routes.AuthController.authenticate) {
 		<fieldset>
 			<legend>input user info.</legend>
 			@helper.inputText(form("email"))
@@ -12,6 +12,6 @@
 	}
 
 }
-<a href="@routes.BaseController.authenticateJson?email=admin&password=1234">json login</a><br>
-<a href="@routes.BaseController.logoutJson">json logout</a><br>
+<a href="@routes.AuthController.authenticateJson?email=admin&password=1234">json login</a><br>
+<a href="@routes.AuthController.logoutJson">json logout</a><br>
 <a href="@routes.JsonController.json1">json1</a><br>

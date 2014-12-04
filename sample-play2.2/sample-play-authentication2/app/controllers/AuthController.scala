@@ -12,7 +12,7 @@ import models.AuthModel
  * Authorization
  * http://www.playframework.com/documentation/2.0.1/ScalaSecurity
  */
-object BaseController extends Controller {
+object AuthController extends Controller {
   val loginForm = Form(
     tuple(
       "email" -> text,
@@ -49,7 +49,7 @@ object BaseController extends Controller {
     if(sessionId.isDefined){
       AuthModel.removeSession(sessionId.get.value)
     }
-    Redirect(controllers.routes.BaseController.login).discardingCookies(DiscardingCookie("sessionId"))
+    Redirect(controllers.routes.AuthController.login).discardingCookies(DiscardingCookie("sessionId"))
   }
 
   def authenticateJson = Action { implicit request =>

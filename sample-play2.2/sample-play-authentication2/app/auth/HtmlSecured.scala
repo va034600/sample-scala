@@ -27,9 +27,9 @@ trait HtmlSecured {
     var next:Call = null
     println(request.path) 
     if(request.path.startsWith("/api")){
-      next = controllers.routes.BaseController.sessionErrorJson
+      next = controllers.routes.AuthController.sessionErrorJson
     }else{
-      next = controllers.routes.BaseController.login
+      next = controllers.routes.AuthController.login
     }
     Results.Redirect(next)
   }

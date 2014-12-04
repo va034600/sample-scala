@@ -6,13 +6,13 @@
 GET     /                           controllers.Application.index
 GET     /api/json1       controllers.JsonController.json1()
 
-GET     /login                           controllers.BaseController.login
-GET     /authenticate                           controllers.BaseController.authenticate
-GET     /logout                           controllers.BaseController.logout
+GET     /login                           controllers.AuthController.login
+GET     /authenticate                           controllers.AuthController.authenticate
+GET     /logout                           controllers.AuthController.logout
 
-GET     /api/authenticate       controllers.BaseController.authenticateJson
-GET     /api/sessionError       controllers.BaseController.sessionErrorJson
-GET     /api/logout                           controllers.BaseController.logoutJson
+GET     /api/authenticate       controllers.AuthController.authenticateJson
+GET     /api/sessionError       controllers.AuthController.sessionErrorJson
+GET     /api/logout                           controllers.AuthController.logoutJson
 
 
 # Map static resources from the /public folder to the /assets URL path
