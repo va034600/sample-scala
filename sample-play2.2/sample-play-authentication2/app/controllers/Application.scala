@@ -12,8 +12,8 @@ import auth.HtmlSecured
  * http://www.playframework.com/documentation/2.0.1/ScalaSecurity
  */
 object Application extends Controller with HtmlSecured {
-  def index = withAuth { username =>
+  def index = withAuth { email =>
     implicit request =>
-      Ok(views.html.index(username))
+      Ok(views.html.index(email))
   }
 }

@@ -4,24 +4,23 @@ import play.api.cache._
 import play.api.Play.current
 
 object AuthModel {
-  def saveSessionId(sessionId:String) {
-    //sessionId保存
-    Cache.set("sessionId", sessionId)
+  def saveSessionId(sessionId:String, email:String) {
+    Cache.set(sessionId, email)
   }
 
   def isSessionId(sessionId:String):Boolean ={
-    if(Cache.get("sessionId").isEmpty){
-      return false
-    }
+    return !Cache.get(sessionId).isEmpty
+  }
 
-    if(Cache.get("sessionId").isEmpty){
-      return false
+  def getEmail(sessionId:String):Option[String] = {
+    println("**" + sessionId + " " + Cache.get(sessionId).get)
+    Cache.get(sessionId) match{
+      case Some(a) => Some(Cache.get(sessionId).get.asInstanceOf[String])
+      case None => None
     }
-
-    return (Cache.get("sessionId").get == sessionId )
   }
 
   def removeSession(sessionId:String){
-    Cache.remove("sessionId")
+    Cache.remove(sessionId)
   }
 }

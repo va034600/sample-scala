@@ -36,10 +36,9 @@ object AuthController extends Controller {
         val sessionId = java.util.UUID.randomUUID().toString()
 
         //sessionId保存
-        AuthModel.saveSessionId(sessionId)
+        AuthModel.saveSessionId(sessionId, loginForm.get._1)
 
-        Redirect(controllers.routes.Application.index).withCookies(
-        Cookie("sessionId", sessionId, Some(3600 * 24 * 7)))
+        Redirect(controllers.routes.Application.index).withCookies(Cookie("sessionId", sessionId, Some(3600 * 24 * 7)))
       }
     )
   }
@@ -64,12 +63,11 @@ object AuthController extends Controller {
         val sessionId = java.util.UUID.randomUUID().toString()
 
         //sessionId保存
-        AuthModel.saveSessionId(sessionId)
+        AuthModel.saveSessionId(sessionId, user._1)
 
         val map = Map("status" -> "ok")
         val json = Json.toJson(map)
-        Ok(json).withCookies(
-        Cookie("sessionId", sessionId, Some(3600 * 24 * 7)))
+        Ok(json).withCookies(Cookie("sessionId", sessionId, Some(3600 * 24 * 7)))
       }
     )
   }
@@ -86,7 +84,7 @@ object AuthController extends Controller {
     if(sessionId.isDefined){
       AuthModel.removeSession(sessionId.get.value)
     }
-        val map = Map("status" -> "ok")
+    val map = Map("status" -> "ok")
     val json = Json.toJson(map)
 
     Ok(json).discardingCookies(DiscardingCookie("sessionId"))
