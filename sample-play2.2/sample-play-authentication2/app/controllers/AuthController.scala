@@ -36,7 +36,7 @@ object AuthController extends Controller {
         val sessionId = java.util.UUID.randomUUID().toString()
 
         //sessionId保存
-        AuthModel.saveSessionId(sessionId, loginForm.get._1)
+        AuthModel.saveSessionId(sessionId, user._1)
 
         Redirect(controllers.routes.Application.index).withCookies(Cookie("sessionId", sessionId, Some(3600 * 24 * 7)))
       }

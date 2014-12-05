@@ -16,12 +16,7 @@ trait HtmlSecured {
       return None
     }
 
-    if(AuthModel.isSessionId(sessionId.get.value)  ){
-      val email = AuthModel.getEmail(sessionId.get.value)
-      Some(email.get)
-    }else{
-      None
-    }
+    AuthModel.getEmail(sessionId.get.value)
   }
 
   def onUnauthorized(request: RequestHeader) = {

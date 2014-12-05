@@ -13,7 +13,6 @@ object AuthModel {
   }
 
   def getEmail(sessionId:String):Option[String] = {
-    println("**" + sessionId + " " + Cache.get(sessionId).get)
     Cache.get(sessionId) match{
       case Some(a) => Some(Cache.get(sessionId).get.asInstanceOf[String])
       case None => None
