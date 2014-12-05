@@ -10,7 +10,7 @@ object AuthModel {
 
   def getEmail(sessionId:String):Option[String] = {
     Cache.get(sessionId) match{
-      case Some(a) => Some(Cache.get(sessionId).get.asInstanceOf[String])
+      case Some(a) => Some(a.asInstanceOf[String])
       case None => None
     }
   }
