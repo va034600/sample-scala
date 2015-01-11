@@ -1,4 +1,9 @@
-This is your new Play application
-=================================
+twitterでアプリケーション登録
+・https://apps.twitter.com/ にアクセスする。
+・Create New Appボタンを押下して入力する。
+※Callback URLに http://127.0.0.1/ を設定する。
+(localhost だとだめ？)
 
-This file will be packaged with your application, when using `activator dist`.
+環境ファイル
+・application.properties.template を application.properties としてコピーする。
+・application.propertiesを設定する。
