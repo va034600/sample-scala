@@ -52,6 +52,6 @@ object Twitter extends Controller {
   }
 
   def end = Action {implicit session =>
-    Ok(views.html.end())
+    Ok(views.html.twitter.end())
   }
 }
