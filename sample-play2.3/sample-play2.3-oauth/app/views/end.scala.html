@@ -1,0 +1,6 @@
+@()(implicit session: play.api.mvc.Session) 
+
+@main("Welcome to Play") {
+	token: @session.get("token")<br>
+	secret: @session.get("secret")<br>
+}
