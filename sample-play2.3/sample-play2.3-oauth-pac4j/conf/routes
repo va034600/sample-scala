@@ -6,6 +6,7 @@
 GET     /                           controllers.Application.index
 
 GET     /twitter/index.html         controllers.Application.twitterIndex()
+GET     /google/index.html         controllers.Application.googleIndex()
 
 GET     /callback                   org.pac4j.play.CallbackController.callback()
 POST    /callback                   org.pac4j.play.CallbackController.callback()
